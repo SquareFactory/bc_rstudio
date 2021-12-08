@@ -77,11 +77,13 @@ srun --container-workdir=${HOME} \
  --container-mount-home \
  --container-writable \
  --preserve-env \
+ --export=ALL,ROOT=TRUE,PASSWORD=${RSTUDIO_PASSWORD} \
  --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro,/etc/slurm/taskprolog:/etc/slurm/taskprolog:ro" \
  sh -c "
  . $LMOD_PKG/init/sh \
  && ml gentoo \
  && ml R \
+ && echo $(which R) \
  && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
