@@ -83,7 +83,7 @@ srun --container-workdir=${HOME} \
  . $LMOD_PKG/init/sh \
  && ml gentoo \
  && ml R \
- && echo $(which R) \
+ && echo \$(which R) \
  && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
