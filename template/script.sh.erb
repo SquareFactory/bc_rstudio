@@ -71,8 +71,6 @@ cd "${HOME}"
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-export ROOT=TRUE
-
 srun --container-workdir=${HOME} \
  --container-image="$IMAGE_FULLPATH" \
  --no-container-remap-root \
@@ -83,8 +81,9 @@ srun --container-workdir=${HOME} \
  rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
-  --auth-pam-helper-path ${RSTUDIO_AUTH} \
+  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
   --auth-encrypt-password 0 \
-  --rsession-path ${RSESSION_WRAPPER_FILE}
+  --rsession-path "${RSESSION_WRAPPER_FILE}" \
+  --server-user "$USER"
 
 echo 'Server exited...'
