@@ -84,6 +84,9 @@ srun --container-workdir=${HOME} \
  && ml gentoo \
  && ml R \
  && echo \$(which R) \
+ && env \
+ && ls -la $WORKING_DIR \
+ && find /home \
  && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
