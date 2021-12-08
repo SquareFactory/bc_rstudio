@@ -1,4 +1,9 @@
-<form action="/rnode/<%= host %>/<%= port %>/auth-do-sign-in" method="post" target="_blank">
+<%-
+  base_url  = "/rnode/#{host}/#{port}"
+  login_url = "#{base_url}/auth-do-sign-in"
+%>
+
+<form action="<%= login_url %>" method="post" target="_blank">
   <input type="hidden" name="username" value="<%= ENV["USER"] %>">
   <input type="hidden" name="password" value="<%= password %>">
   <input type="hidden" name="staySignedIn" value="1">
