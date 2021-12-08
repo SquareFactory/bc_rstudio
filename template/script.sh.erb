@@ -38,7 +38,6 @@ fi
 
 # PAM auth helper used by RStudio
 export WORKING_DIR="<%= session_dir %>"
-export RSTUDIO_AUTH="$WORKING_DIR/bin/auth"
 export RSESSION_WRAPPER_FILE="$WORKING_DIR/rsession.sh"
 (
 umask 077
@@ -83,14 +82,9 @@ srun --container-workdir=${HOME} \
  . $LMOD_PKG/init/sh \
  && ml gentoo \
  && ml R \
- && echo \$(which R) \
- && env \
- && ls -la $WORKING_DIR \
- && find /home \
- && rserver --www-port ${port} \
+ && /init rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
-  --auth-pam-helper-path ${RSTUDIO_AUTH} \
   --auth-encrypt-password 0 \
   --www-enable-origin-check 0 \
   --rsession-path ${RSESSION_WRAPPER_FILE} \
