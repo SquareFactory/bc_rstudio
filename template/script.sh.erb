@@ -71,6 +71,8 @@ cd "${HOME}"
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
+export ROOT=TRUE
+
 srun --container-workdir=${HOME} \
  --container-image="$IMAGE_FULLPATH" \
  --no-container-remap-root \
