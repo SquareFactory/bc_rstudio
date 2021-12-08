@@ -83,6 +83,7 @@ srun --container-workdir=${HOME} \
   --auth-none 0 \
   --auth-pam-helper-path "${RSTUDIO_AUTH}" \
   --auth-encrypt-password 0 \
+  --www-enable-origin-check 0 \
   --rsession-path "${RSESSION_WRAPPER_FILE}" \
   --server-user "$USER"
 
