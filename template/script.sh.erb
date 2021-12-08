@@ -77,14 +77,19 @@ srun --container-workdir=${HOME} \
  --container-mount-home \
  --container-writable \
  --preserve-env \
- --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro,/etc/slurm/taskprolog:/etc/slurm/taskprolog:ro,$WORKING_DIR:$WORKING_DIR:ro" \
- rserver --www-port ${port} \
+ --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro,/etc/slurm/taskprolog:/etc/slurm/taskprolog:ro" \
+ sh -c "
+ . $LMOD_PKG/init/sh \
+ && ml gentoo \
+ && ml R \
+ && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
-  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
+  --auth-pam-helper-path ${RSTUDIO_AUTH} \
   --auth-encrypt-password 0 \
   --www-enable-origin-check 0 \
-  --rsession-path "${RSESSION_WRAPPER_FILE}" \
-  --server-user "$USER"
+  --rsession-path ${RSESSION_WRAPPER_FILE} \
+  --server-user $USER \
+  --rsession-which-r=\$(which R)"
 
 echo 'Server exited...'
