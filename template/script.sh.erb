@@ -82,6 +82,7 @@ srun --container-workdir=${HOME} \
  . $LMOD_PKG/init/sh \
  && ml gentoo \
  && ml R \
+ && export LD_LIBRARY_PATH=$LIBRARY_PATH:$EPREFIX/usr/lib64:$EPREFIX/usr/lib \
  && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
