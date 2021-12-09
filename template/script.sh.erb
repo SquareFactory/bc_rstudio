@@ -34,6 +34,8 @@ if [ "$tries" -ge 10 ]; then
 	exit 1
 fi
 
+. $LMOD_PKG/init/sh
+
 # PAM auth helper used by RStudio
 export WORKING_DIR="<%= session_dir %>"
 export RSESSION_WRAPPER_FILE="$WORKING_DIR/rsession.sh"
@@ -76,7 +78,11 @@ srun --container-workdir=${HOME} \
  --preserve-env \
  --export=ALL,PASSWORD=${RSTUDIO_PASSWORD} \
  --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro,/etc/slurm/taskprolog:/etc/slurm/taskprolog:ro" \
- rserver --www-port ${port} \
+ sh -c "
+ . $LMOD_PKG/init/sh \
+ && ml gentoo \
+ && ml RStudio-Server \
+ &&  rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
   --auth-encrypt-password 0 \
@@ -84,5 +90,6 @@ srun --container-workdir=${HOME} \
   --rsession-path ${RSESSION_WRAPPER_FILE} \
   --auth-pam-helper-path /usr/lib/rstudio-server/bin/pam-helper \
   --server-user ${USER}
+  "
 
 echo 'Server exited...'

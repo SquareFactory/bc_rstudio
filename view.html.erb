@@ -3,11 +3,16 @@
   login_url = "#{base_url}/auth-do-sign-in"
 %>
 
+<script>
+  document.cookie = "csrf-token=<%= csrf_token %>; path=/rnode/<%= host %>/<%= port %>; secure";
+</script>
+
 <form action="<%= login_url %>" method="post" target="_blank">
   <input type="hidden" name="username" value="<%= ENV["USER"] %>">
   <input type="hidden" name="password" value="<%= password %>">
-  <input type="hidden" name="staySignedIn" value="1">
-  <input type="hidden" name="appUri" value="/">
+  <input type="hidden" name="staySignedIn" value="1"/>
+  <input type="hidden" name="appUri" value=""/>
+  <input type="hidden" name="csrf-token" value="<%= csrftoken %>"/>
   <button class="btn btn-primary" type="submit">
     <i class="fa fa-registered"></i> Connect to RStudio Server
   </button>
