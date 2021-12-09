@@ -83,7 +83,6 @@ srun --container-workdir=${HOME} \
   --www-enable-origin-check 0 \
   --rsession-path ${RSESSION_WRAPPER_FILE} \
   --auth-pam-helper-path /usr/lib/rstudio-server/bin/pam-helper \
-  --server-user ${USER} \
-  --www-root-path=/rnode/${host}/${port}/
+  --server-user ${USER}
 
 echo 'Server exited...'
