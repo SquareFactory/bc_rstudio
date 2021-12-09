@@ -72,7 +72,7 @@ echo "Starting up rserver..."
 
 srun --container-workdir=${HOME} \
  --container-image="$IMAGE_FULLPATH" \
- --container-remap-root \
+ --no-container-remap-root \
  --container-mount-home \
  --container-writable \
  --preserve-env \
@@ -82,12 +82,15 @@ srun --container-workdir=${HOME} \
  . $LMOD_PKG/init/sh \
  && ml gentoo \
  && ml R \
- && /init rserver --www-port ${port} \
+ && rserver --www-port ${port} \
   --server-daemonize=0 \
   --auth-none 0 \
   --auth-encrypt-password 0 \
   --www-enable-origin-check 0 \
   --rsession-path ${RSESSION_WRAPPER_FILE} \
-  --rsession-which-r=\$(which R)"
+  --rsession-which-r=\$(which R) \
+  --auth-pam-helper-path /usr/lib/rstudio-server/bin/pam-helper \
+  --server-user \$USER
+  "
 
 echo 'Server exited...'
