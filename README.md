@@ -3,7 +3,7 @@
 ![GitHub Release](https://img.shields.io/github/release/osc/bc_example_rstudio.svg)
 ![GitHub License](https://img.shields.io/github/license/osc/bc_example_rstudio.svg)
 
-An example Batch Connect app that launches an RStudio server within a
+An Batch Connect app that launches an RStudio server within a
 batch job.
 
 ## Prerequisites
@@ -14,13 +14,7 @@ OnDemand node):
 
 - [RStudio](https://www.rstudio.com/)
 - [R](https://www.r-project.org/)
-- [Singularity](https://www.sylabs.io/docs/)
-
-All Batch Connect apps also require the following on the compute nodes:
-
-- [Websockify](https://pypi.org/project/websockify/)
-- [TurboVNC](https://turbovnc.org)
-- [nc (netcat)](http://netcat.sourceforge.net/)
+- [Pyxis](https://github.com/NVIDIA/pyxis)
 
 **Optional** software:
 
@@ -37,7 +31,7 @@ Note that this example assumes that the compute host is CentOS 7. In order to en
 
 ## Contributing
 
-1. Fork it ( https://github.com/OSC/bc_example_rstudio/fork )
+1. Fork it ( https://github.com/csquare-ai/bc_rstudio/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
