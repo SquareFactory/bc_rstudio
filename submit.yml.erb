@@ -2,6 +2,11 @@
 batch_connect:
   template: "basic"
   set_host: "host=$(hostname | awk '{print $1}')"
+  conn_params:
+    - host
+    - port
+    - password
+    - csrf_token
 
 script:
   native:
@@ -13,7 +18,3 @@ script:
     - "<%= gpus_per_node.blank? ? 0 : gpus_per_node.to_i %>"
     - "--mem"
     - "<%= mem_per_node.blank? ? 0 : mem_per_node.to_i %>"
-
-
-conn_params:
-  - csrf_token
