@@ -72,7 +72,7 @@ echo "Starting up rserver..."
 
 srun --container-workdir=${HOME} \
  --container-image="$IMAGE_FULLPATH" \
- --no-container-remap-root \
+ --container-remap-root \
  --container-mount-home \
  --container-writable \
  --preserve-env \
@@ -88,7 +88,6 @@ srun --container-workdir=${HOME} \
   --auth-encrypt-password 0 \
   --www-enable-origin-check 0 \
   --rsession-path ${RSESSION_WRAPPER_FILE} \
-  --server-user $USER \
   --rsession-which-r=\$(which R)"
 
 echo 'Server exited...'
