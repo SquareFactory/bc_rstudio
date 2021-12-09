@@ -76,7 +76,7 @@ srun --container-workdir=${HOME} \
  --container-mount-home \
  --container-writable \
  --preserve-env \
- --export=ALL,ROOT=TRUE \
+ --export=ALL,PASSWORD=${RSTUDIO_PASSWORD} \
  --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro,/etc/slurm/taskprolog:/etc/slurm/taskprolog:ro" \
  sh -c "
  . $LMOD_PKG/init/sh \
