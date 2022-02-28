@@ -77,10 +77,10 @@ srun --container-workdir=${HOME} \
  --container-writable \
  --preserve-env \
  --export=ALL,PASSWORD=${RSTUDIO_PASSWORD} \
- --container-mounts="/opt/gentoo:/opt/gentoo:ro,/opt/cvmfs:/opt/cvmfs:ro" \
+ --container-mounts="/opt/stdenv:/opt/stdenv:ro,/opt/software:/opt/software:ro" \
  sh -c "
  . $LMOD_PKG/init/sh \
- && ml gentoo \
+ && ml stdenv/2022.1 \
  && ml RStudio-Server \
  &&  rserver --www-port ${port} \
   --server-daemonize=0 \
