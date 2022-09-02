@@ -1,5 +1,4 @@
 ---
-cluster: 'reindeerpizza'
 attributes:
   num_cores:
     widget: 'number_field'
